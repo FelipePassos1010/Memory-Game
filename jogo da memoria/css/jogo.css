@@ -1,0 +1,79 @@
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: bisque;
+    background-size: cover;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 50px;
+}
+
+header {
+
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(246, 4, 4, 0.6);
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    margin: 0px 0px 30px;
+    border-radius: 5px;
+
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+    
+    margin: 0px auto;
+}
+
+.carta {
+    aspect-ratio: 3/4;
+   width: 100%;
+   background-color: #ff0606;
+   border-radius: 5px;
+   position: relative;
+   transition: all 400ms ease;
+   transform-style: preserve-3d;
+    
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    transition: all 800ms ease;
+
+}
+
+.frente{
+    
+    transform: rotateY(180deg);
+}
+.tras{
+    background-image: url('https://attachment.outlook.live.net/owa/MSA%3Afeapassos%40hotmail.com/service.svc/s/GetAttachmentThumbnail?id=AQMkADAwATYwMAItOWIzNC1jOTdjLTAwAi0wMAoARgAAAxOv4mVb0YtDmBjhBrPf1GgHACiAPm0DMX1OoK6KbVM1d5cAAAIBDAAAACiAPm0DMX1OoK6KbVM1d5cABoIaBfgAAAABEgAQABPSu%2FBqPehLmsd%2BHMrzxng%3D&thumbnailType=2&isc=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjczRkI5QkJFRjYzNjc4RDRGN0U4NEI0NDBCQUJCMTJBMzM5RDlGOTgiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJjX3VidnZZMmVOVDM2RXRFQzZ1eEtqT2RuNWcifQ.eyJvcmlnaW4iOiJodHRwczovL291dGxvb2subGl2ZS5jb20iLCJ1YyI6ImRlMzYxM2VjZWI3OTQ1NmY4YzY4MDZjN2RjYTBkMjZmIiwidmVyIjoiRXhjaGFuZ2UuQ2FsbGJhY2suVjEiLCJhcHBjdHhzZW5kZXIiOiJPd2FEb3dubG9hZEA4NGRmOWU3Zi1lOWY2LTQwYWYtYjQzNS1hYWFhYWFhYWFhYWEiLCJpc3NyaW5nIjoiV1ciLCJhcHBjdHgiOiJ7XCJtc2V4Y2hwcm90XCI6XCJvd2FcIixcInB1aWRcIjpcIjE2ODg4NTI0NjQxOTE4NjhcIixcInNjb3BlXCI6XCJPd2FEb3dubG9hZFwiLFwib2lkXCI6XCIwMDA2MDAwMC05YjM0LWM5N2MtMDAwMC0wMDAwMDAwMDAwMDBcIixcInByaW1hcnlzaWRcIjpcIlMtMS0yODI3LTM5MzIxNi0yNjAzOTI3OTMyXCJ9IiwibmJmIjoxNjg1NTYyMTg1LCJleHAiOjE2ODU1NjI3ODUsImlzcyI6IjAwMDAwMDAyLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMEA4NGRmOWU3Zi1lOWY2LTQwYWYtYjQzNS1hYWFhYWFhYWFhYWEiLCJhdWQiOiIwMDAwMDAwMi0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvYXR0YWNobWVudC5vdXRsb29rLmxpdmUubmV0QDg0ZGY5ZTdmLWU5ZjYtNDBhZi1iNDM1LWFhYWFhYWFhYWFhYSIsImhhcHAiOiJvd2EifQ.u0IR5DxfCTUqE-yRB3ugIeGi_2z5ASW1IvvGM7atyWLfBayM0X-GplD1PB7TAjVwUrE3FURfdvzf_8Ivxsn4TEuAqurH2eOEsPA1HFKiQkBw656gfj2YyUJE0eImqONo_8cFtZgaYIIDPeOHc4llbFPcCajt5AljHKn6eHxY89iQIByso_oovpF0jHcKJg7FuIERuqnhV3OSp4tw_5tF-GqsBZXaZ2l-bhQyGMaHNxLrkeh7LzHY4LRJjHTeIzPH_hg6BpV2Jlo-uBOgN83IxSr1YinbzeaUSHBY_1W1GjGyW0KmHNwSvQ50DXB_30O9cgNYqtOGsJzrDBsrJvnWvQ&X-OWA-CANARY=D6EzTpXkzU6ePoNsut94b4CiyE4PYtsY9qwpebJNmiyKdRciq7VPT-pgbcQPfOmkDQUWVDazqJU.&owa=outlook.live.com&scriptVer=20230519010.07&animation=true');
+    background-size: cover;
+    background-position: center;
+    backface-visibility: hidden;
+}
+
+.reveal_carta {
+    
+    transform: rotateY(180deg);
+}
+
+.desativar_carta {
+    filter: saturate(0);
+    opacity: 0.3;
+}
