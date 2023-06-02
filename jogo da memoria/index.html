@@ -6,8 +6,7 @@
 
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/login.css">
-    
-    
+
     <title>Login Jogo da Memoria</title>
 </head>
 <body>
@@ -18,13 +17,13 @@
         </div>
         
         <input type="text" placeholder="Nome" class="login_input">
-        <button type="submit" class="login_button" disabled>JOGAR</button>
-        
-        
-        
+        <div class="difficulty_buttons">
+            <button type="submit" class="login_button" disabled data-dificuldade="facil">Fácil</button>
+            <button type="submit" class="login_button" disabled data-dificuldade="medio">Médio</button>
+            <button type="submit" class="login_button" disabled data-dificuldade="dificil">Difícil</button>
+        </div>
     </form>
     
-<script defer src="./java/login2.js"></script>
-
+    <script defer src="./java/login2.js"></script>
 </body>
 </html>

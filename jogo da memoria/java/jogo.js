@@ -2,7 +2,6 @@ const grid = document.querySelector('.grid');
 const spanJogador = document.querySelector('.jogador');
 const timer = document.querySelector('.timer');
 
-
 const figuras = [
   'https://midiateca.es.gov.br/museucolono/wp-content/uploads/tainacan-items/732/845/72.1.446-001-scaled.jpg',
   'https://midiateca.es.gov.br/palacioanchieta/wp-content/uploads/tainacan-items/77/161/61.jpg',
@@ -18,43 +17,54 @@ const figuras = [
 
 let primeiraCarta = '';
 let segundaCarta = '';
+let timerInterval;
+let seconds = 0;
+let cartasViradas = 0;
+let nivelDificuldade = '';
 
 const checkfim = () => {
-    const desativarcartas = document.querySelectorAll('.desativar_carta');
+  let numCartasNecessarias;
 
-    if( desativarcartas.length === 20) {
-        alert('Parabéns, você ganhou!!!');
-    }
-}
+  if (nivelDificuldade === 'facil') {
+    numCartasNecessarias = 10;
+  } else if (nivelDificuldade === 'medio') {
+    numCartasNecessarias = 14;
+  } else if (nivelDificuldade === 'dificil') {
+    numCartasNecessarias = 20;
+  } else {
+    numCartasNecessarias = figuras.length;
+  }
 
+  if (cartasViradas === numCartasNecessarias) {
+    clearInterval(timerInterval);
+    const nomejogador = localStorage.getItem('jogador');
+    alert(`Parabéns, ${nomejogador}! Você ganhou em ${seconds} segundos.`);
+  }
+};
 
 const checkCartas = () => {
-    const primeiraFigura = primeiraCarta.getAttribute('data-figura');
-    const segundaFigura = segundaCarta.getAttribute('data-figura');
+  const primeiraFigura = primeiraCarta.getAttribute('data-figura');
+  const segundaFigura = segundaCarta.getAttribute('data-figura');
 
-    if(primeiraFigura === segundaFigura){
+  if (primeiraFigura === segundaFigura) {
+    primeiraCarta.firstChild.classList.add('desativar_carta');
+    segundaCarta.firstChild.classList.add('desativar_carta');
+    primeiraCarta = '';
+    segundaCarta = '';
 
-        primeiraCarta.firstChild.classList.add('desativar_carta');
-        segundaCarta.firstChild.classList.add('desativar_carta');
-        primeiraCarta = '';
-        segundaCarta = '';
+    cartasViradas += 2;
 
-        checkfim();
+    checkfim();
+  } else {
+    setTimeout(() => {
+      primeiraCarta.classList.remove('reveal_carta');
+      segundaCarta.classList.remove('reveal_carta');
 
-    } else {
-        
-        setTimeout(() => {
-            primeiraCarta.classList.remove('reveal_carta');
-            segundaCarta.classList.remove('reveal_carta');
-            
-            primeiraCarta = '';
-            segundaCarta = '';
-        }, 500);
-        
-    }
-
-
-}
+      primeiraCarta = '';
+      segundaCarta = '';
+    }, 500);
+  }
+};
 
 const mostrarCarta = ({ target }) => {
   if (target.parentNode.classList.contains('reveal_carta')) {
@@ -90,14 +100,14 @@ const criarcarta = (figura) => {
   grid.appendChild(carta);
 
   carta.addEventListener('click', mostrarCarta);
-  carta.setAttribute('data-figura', figura)
+  carta.setAttribute('data-figura', figura);
 
   return carta;
 };
 
-const Jogo = () => {
-  const duplicar = [...figuras, ...figuras];
-  const embaralhar = duplicar.sort(() => Math.random() - 0.5);
+const Jogo = (numCartas) => {
+  const embaralhar = figuras.slice(0, numCartas).concat(figuras.slice(0, numCartas));
+  embaralhar.sort(() => Math.random() - 0.5);
 
   embaralhar.forEach((figura) => {
     const card = criarcarta(figura);
@@ -105,22 +115,30 @@ const Jogo = () => {
   });
 };
 
-const tempo = () => {
-
-  setInterval(() => {
-
-    const atualtimer =Number(timer.innerHTML);
-    timer.innerHTML = atualtimer + 1
-
-  }, 1000)
-}
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    seconds++;
+    timer.innerHTML = seconds;
+  }, 1000);
+};
 
 window.onload = () => {
   const nomejogador = localStorage.getItem('jogador');
-  spanJogador.innerHTML = nomejogador
+  nivelDificuldade = localStorage.getItem('dificuldade');
+  spanJogador.innerHTML = nomejogador;
 
-  tempo();
-  Jogo();
-}
+  let numCartas;
 
+  if (nivelDificuldade === 'facil') {
+    numCartas = 5;
+  } else if (nivelDificuldade === 'medio') {
+    numCartas = 7;
+  } else if (nivelDificuldade === 'dificil') {
+    numCartas = 10;
+  } else {
+    numCartas = figuras.length;
+  }
 
+  startTimer();
+  Jogo(numCartas);
+};
