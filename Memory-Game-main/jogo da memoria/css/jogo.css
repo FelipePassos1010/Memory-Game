@@ -1,0 +1,78 @@
+/* Styles for the main container */
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: bisque;
+    background-size: cover;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 50px;
+  }
+  
+  /* Styles for the header */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(246, 4, 4, 0.6);
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    margin: 0px 0px 30px;
+    border-radius: 5px;
+  }
+  
+  /* Styles for the grid */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0px auto;
+  }
+  
+  /* Styles for the cards */
+  .carta {
+    aspect-ratio: 3/4;
+    width: 100%;
+    background-color: #ff0606;
+    border-radius: 5px;
+    position: relative;
+    transition: all 400ms ease;
+    transform-style: preserve-3d;
+  }
+  
+  .face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    transition: all 800ms ease;
+  }
+  
+  .frente {
+    transform: rotateY(180deg);
+  }
+  
+  .tras {
+    background-image: url('https://live.staticflickr.com/65535/53007889261_5365f87da7_n.jpg');
+    background-size: cover;
+    background-position: center;
+    backface-visibility: hidden;
+  }
+  
+  .reveal_carta {
+    transform: rotateY(180deg);
+  }
+  
+  .desativar_carta {
+    filter: saturate(0);
+    opacity: 0.3;
+  }
+  
+  /* Media queries */
+  
